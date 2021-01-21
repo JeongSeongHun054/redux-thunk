@@ -1,45 +1,3 @@
-# Redux-Thunk
-
-[Redux-Thunk Docs](https://github.com/reduxjs/redux-thunk)
-
-- createRequestThunk File
-```javascript
-import { finishLoading, startLoading } from "../modules/loading";
-
-// type: sample/GET_POST
-// request: api.getPost
-export default function createRequestThunk(type, request) {
-  // 성공 및 실패 액션 타입을 정의
-  const SUCCESS = `${type}_SUCCESS`;
-  const FAILURE = `${type}_FAILURE`;
-  return (params) => async (dispatch) => {
-    dispatch({ type });
-    dispatch(startLoading(type));
-    try {
-      const response = await request(params);
-      dispatch({
-        type: SUCCESS,
-        payload: response.data,
-      }); //성공
-      dispatch(finishLoading(type));
-    } catch (e) {
-      dispatch({
-        type: FAILURE,
-        payload: e,
-        error: true,
-      });
-      dispatch(finishLoading(type));
-      throw e;
-    }
-  };
-}
-
-//사용법: createRequestThunk('GET_USERS', api.getUsers);
-```
-
-- module file
-
-```javascript
 import { handleActions } from "redux-actions";
 import * as api from "../lib/api";
 import createRequestThunk from "../lib/createRequestThunk";
@@ -114,5 +72,3 @@ const sample = handleActions(
 );
 
 export default sample;
-
-```

@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// 리듀서가 액션을 취하기 전에 어떤 작업을 취하는 것 => 미들웨어
+/*const Middleware = store => next => action => {
+  // 미들웨어 기본구조
+}*/
+
+/*const Middleware = function middleware(store){
+  return function(next){
+    return function(action){
+
+    }
+  }
+}*/
+
+import React from "react";
+import SampleContainer from "./containers/SampleContainer";
+import CounterContainer from "./containers/CounterContainer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CounterContainer />
+      <hr />
+      <SampleContainer />
+    </>
   );
 }
 
